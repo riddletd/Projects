@@ -1,0 +1,47 @@
+######################################################################
+# 
+# My goal is to write a program that stores Physical information. I am
+# fully aware that the C++ library "Boost" contains such a program,
+# but I want to write I library for myself. If I write it myself, it
+# will give me good practice in writing cool software programs.
+#
+# Author: Trevor Riddle
+# Creation Date: May 6, 2017
+# Updated: May 6, 2017 
+#
+######################################################################
+
+This file will be used as an informal write-up of the ideas I want to
+incorporate into this library of code.
+
+Ideas:
+
+
+Diminsional Analysis
+
+1) Create a library for diminsional constants and analysis
+   * It will be used to check for diminsional correctness on both sides
+     of the equation.
+
+
+
+Types using Units of Measure
+
+1) I want a clean way of storing types with specific units of measure.
+   * This will include storing and representing algebraic types, such
+     as L/T or km/s.
+   * Also, I would like it to prove possibilities such as diminsional
+     analysis checks.
+   * 
+
+
+
+Conversion of Units
+
+
+
+Parsing Equations (Physics Calculator)
+
+1) Create a way of inputting an equation with numbers substituting
+   variables and producing a correct output with the correct type
+   matching the numeric result.

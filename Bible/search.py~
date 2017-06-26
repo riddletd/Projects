@@ -1,0 +1,96 @@
+#!/usr/bin/python
+
+import os, sys, re, organize, textwrap
+
+search = raw_input("Search: ")
+
+bible = organize.booksList()
+
+count = 0
+bookCount = 0
+prevBookCount = 0
+bookReference = ""
+for book in bible:
+    # Open the file in the BibleOrg diretory using the names of the
+    # bible found in the Books directory.
+    bookName = book[:-5]
+    
+    file = open("BibleOrg/" + bookName)
+    text = file.read()
+    
+    verse = re.findall(r'.*' + search + r'.*', text, re.I)
+    
+    for found in verse:
+        dedented_text = textwrap.dedent(found).strip()
+        print(textwrap.fill(dedented_text, width=80) + "\n\n")
+        count += 1
+        bookCount += 1
+
+    
+    if bookCount > prevBookCount:
+        bookReference = bookName
+        prevBookCount = bookCount
+    
+    bookCount = 0
+
+##
+# Prints out the number of verses containing the search word(s).
+# Currently NOT being used.
+##
+def verseNum():    
+    if bookCount > 0:
+        if " " not in search:
+            print("\tThe word \"" 
+                  + search 
+                  + "\" is mentioned " 
+                  + str(bookCount) 
+                  + " times in the book of " + bookName + ".\n\n")
+        else:
+            print("\tThe expression \"" 
+                  + search 
+                  + "\" is mentioned " 
+                  + str(bookCount) 
+                  + " times in the book of " + bookName + ".\n\n")
+
+
+##
+# Pretty-prints some data about the search word(s) you provided.
+##
+
+print("\n**************************************NOTE**************************************\n*")
+
+if count != 0:
+    if " " not in search:
+        print("* The word \"" 
+              + search 
+              + "\" is mentioned " 
+              + str(count) 
+              + " times in the Bible.")
+    else:
+        print("* The expression \"" 
+              + search 
+              + "\" is mentioned " 
+              + str(count) 
+              + " times in the Bible.")
+else:
+    if " " not in search:    
+        print("* The word \"" + search + "\" is not mentioned.")
+    else:
+        print("* The expression \"" + search + "\" is not mentioned.")
+
+if prevBookCount != 0:
+    print("* "
+          + bookReference 
+          + " has the most references to \"" 
+          + search 
+          + "\" with " 
+          + str(prevBookCount) 
+          + " references."
+          
+          + "\n* It would be wise to study " 
+          + bookReference
+          + " for more information about \""
+          + search
+          + "\".")
+
+print("*\n********************************************************************************\n")
