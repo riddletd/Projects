@@ -88,13 +88,13 @@ if count != 0:
               + search 
               + "\" is mentioned " 
               + str(count) 
-              + " times in the Bible.")
+              + " times in the KJV Bible.")
     else:
         print("* The expression \"" 
               + search 
               + "\" is mentioned " 
               + str(count) 
-              + " times in the Bible.")
+              + " times in the KJV Bible.")
 else:
     if " " not in search:    
         print("* The word \"" + search + "\" is not mentioned.")
